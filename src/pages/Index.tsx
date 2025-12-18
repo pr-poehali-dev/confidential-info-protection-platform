@@ -1,73 +1,120 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import AnimatedBackground from '@/components/AnimatedBackground';
+import FloatingShapes from '@/components/FloatingShapes';
+import { InteractiveCard } from '@/components/InteractiveCard';
 
 const Index = () => {
-  const [activeTab, setActiveTab] = useState('encryption');
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = 'smooth';
+    return () => {
+      document.documentElement.style.scrollBehavior = 'auto';
+    };
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-purple-50/30 to-white relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-purple-950/20 to-slate-950 relative overflow-hidden">
       <AnimatedBackground />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none" />
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] pointer-events-none" />
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-lg border-b border-purple-100 z-50">
+      <FloatingShapes />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none" />
+      
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled 
+          ? 'bg-slate-950/80 backdrop-blur-2xl border-b border-primary/20 shadow-lg shadow-primary/5' 
+          : 'bg-transparent'
+      }`}>
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Icon name="Shield" className="text-primary" size={32} />
-              <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <div className="flex items-center gap-3 group cursor-pointer">
+              <div className="relative">
+                <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full group-hover:bg-primary/30 transition-all" />
+                <Icon name="Shield" className="text-primary relative z-10 group-hover:scale-110 transition-transform" size={32} />
+              </div>
+              <span className="text-xl font-bold bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent animate-gradient-x">
                 SecureAI
               </span>
             </div>
             <div className="hidden md:flex items-center gap-8">
-              <a href="#features" className="text-sm font-medium hover:text-primary transition-colors">Возможности</a>
-              <a href="#how-it-works" className="text-sm font-medium hover:text-primary transition-colors">Как работает</a>
-              <a href="#use-cases" className="text-sm font-medium hover:text-primary transition-colors">Кейсы</a>
-              <a href="#pricing" className="text-sm font-medium hover:text-primary transition-colors">Цены</a>
-              <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">О нас</a>
-              <a href="#contact" className="text-sm font-medium hover:text-primary transition-colors">Контакты</a>
+              <a href="#features" className="text-sm font-medium text-white/70 hover:text-primary transition-all hover:scale-105">Возможности</a>
+              <a href="#how-it-works" className="text-sm font-medium text-white/70 hover:text-primary transition-all hover:scale-105">Как работает</a>
+              <a href="#use-cases" className="text-sm font-medium text-white/70 hover:text-primary transition-all hover:scale-105">Кейсы</a>
+              <a href="#pricing" className="text-sm font-medium text-white/70 hover:text-primary transition-all hover:scale-105">Цены</a>
+              <a href="#about" className="text-sm font-medium text-white/70 hover:text-primary transition-all hover:scale-105">О нас</a>
+              <a href="#contact" className="text-sm font-medium text-white/70 hover:text-primary transition-all hover:scale-105">Контакты</a>
             </div>
-            <Button className="hidden md:inline-flex">Начать</Button>
+            <Button className="hidden md:inline-flex bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/50 transition-all group">
+              Начать
+              <Icon name="Sparkles" className="ml-2 group-hover:rotate-12 transition-transform" size={16} />
+            </Button>
           </div>
         </div>
       </nav>
 
-      <section className="pt-32 pb-20 px-6 relative z-10">
+      <section className="pt-40 pb-32 px-6 relative z-10">
         <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center animate-fade-in">
-            <Badge className="mb-6 bg-primary/10 text-primary border-primary/20">
-              🔒 Новое поколение защиты данных
+          <div className="max-w-5xl mx-auto text-center animate-fade-in">
+            <Badge className="mb-8 bg-primary/10 text-primary border-primary/30 backdrop-blur-xl px-6 py-2 text-sm hover:bg-primary/20 transition-all cursor-pointer">
+              <Icon name="Lock" className="inline mr-2" size={16} />
+              Новое поколение защиты данных
             </Badge>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent leading-tight">
+            <h1 className="text-6xl md:text-8xl font-bold mb-8 bg-gradient-to-r from-white via-primary to-secondary bg-clip-text text-transparent leading-tight animate-gradient-x">
               Защита конфиденциальности при работе с ИИ
             </h1>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            <p className="text-xl md:text-2xl text-white/60 mb-12 max-w-3xl mx-auto leading-relaxed">
               Безопасно используйте AI-модели без риска утечки корпоративных данных. 
-              Шифрование, анализ рисков и полный контроль над информацией.
+              Шифрование военного уровня, анализ рисков и полный контроль.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="text-lg px-8 h-14 shadow-lg hover:shadow-xl transition-all">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+              <Button size="lg" className="text-lg px-10 h-16 bg-gradient-to-r from-primary to-secondary hover:shadow-2xl hover:shadow-primary/50 transition-all group text-white border-0 hover:scale-105">
                 Попробовать бесплатно
-                <Icon name="ArrowRight" className="ml-2" size={20} />
+                <Icon name="ArrowRight" className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
               </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8 h-14">
+              <Button size="lg" variant="outline" className="text-lg px-10 h-16 border-2 border-primary/30 text-white hover:bg-primary/10 hover:border-primary transition-all backdrop-blur-xl hover:scale-105">
+                <Icon name="Play" className="mr-2" size={20} />
                 Смотреть демо
-                <Icon name="Play" className="ml-2" size={20} />
               </Button>
+            </div>
+            
+            <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto mt-20">
+              {[
+                { number: '99.9%', label: 'Uptime SLA', icon: 'TrendingUp' },
+                { number: '10M+', label: 'Защищенных запросов', icon: 'Shield' },
+                { number: '500+', label: 'Компаний доверяют', icon: 'Users' }
+              ].map((stat, i) => (
+                <div key={i} className="text-center p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10 transition-all hover:scale-105 animate-fade-in" style={{ animationDelay: `${i * 100}ms` }}>
+                  <Icon name={stat.icon} className="mx-auto mb-3 text-primary" size={28} />
+                  <div className="text-3xl font-bold text-white mb-1">{stat.number}</div>
+                  <div className="text-sm text-white/50">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section id="features" className="py-20 px-6 bg-white/50 backdrop-blur-sm relative z-10">
+      <section id="features" className="py-32 px-6 relative z-10">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-secondary/10 text-secondary border-secondary/20">Возможности</Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Комплексная защита данных</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <div className="text-center mb-20">
+            <Badge className="mb-6 bg-secondary/10 text-secondary border-secondary/30 backdrop-blur-xl">
+              <Icon name="Zap" className="inline mr-2" size={14} />
+              Возможности
+            </Badge>
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">Комплексная защита данных</h2>
+            <p className="text-xl text-white/60 max-w-2xl mx-auto">
               Многоуровневая система безопасности для работы с AI-моделями
             </p>
           </div>
@@ -111,39 +158,43 @@ const Index = () => {
                 color: 'text-accent'
               }
             ].map((feature, index) => (
-              <Card 
-                key={index} 
-                className="border-2 hover:border-primary/50 transition-all hover:shadow-lg animate-slide-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <CardHeader>
-                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br from-${feature.color.split('-')[1]}/10 to-${feature.color.split('-')[1]}/5 flex items-center justify-center mb-4`}>
-                    <Icon name={feature.icon} className={feature.color} size={28} />
-                  </div>
-                  <CardTitle className="text-xl">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">{feature.description}</CardDescription>
-                </CardContent>
-              </Card>
+              <InteractiveCard key={index} glassEffect>
+                <Card className="border-2 border-white/10 bg-white/5 backdrop-blur-xl hover:border-primary/50 transition-all group animate-slide-up" style={{ animationDelay: `${index * 100}ms` }}>
+                  <CardHeader>
+                    <div className="relative mb-6">
+                      <div className={`absolute inset-0 bg-gradient-to-br ${feature.color.replace('text-', 'from-')}/20 blur-xl rounded-xl`} />
+                      <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center relative backdrop-blur-xl border border-white/20 group-hover:scale-110 transition-transform">
+                        <Icon name={feature.icon} className={feature.color} size={32} />
+                      </div>
+                    </div>
+                    <CardTitle className="text-2xl text-white">{feature.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base text-white/60">{feature.description}</CardDescription>
+                  </CardContent>
+                </Card>
+              </InteractiveCard>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="how-it-works" className="py-20 px-6 bg-gradient-to-b from-purple-50/50 to-white/50 backdrop-blur-sm relative z-10">
+      <section id="how-it-works" className="py-32 px-6 relative z-10">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">Процесс</Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Как это работает</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <div className="text-center mb-20">
+            <Badge className="mb-6 bg-primary/10 text-primary border-primary/30 backdrop-blur-xl">
+              <Icon name="Workflow" className="inline mr-2" size={14} />
+              Процесс
+            </Badge>
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">Как это работает</h2>
+            <p className="text-xl text-white/60 max-w-2xl mx-auto">
               Простая интеграция и автоматическая защита в 4 шага
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <div className="relative">
-              <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-secondary to-accent rounded-full hidden md:block" />
+              <div className="absolute left-10 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-secondary to-accent rounded-full hidden md:block opacity-30" />
               
               {[
                 {
@@ -171,25 +222,33 @@ const Index = () => {
                   icon: 'CheckCircle'
                 }
               ].map((step, index) => (
-                <div key={index} className="relative flex gap-8 mb-12 last:mb-0 animate-fade-in" style={{ animationDelay: `${index * 150}ms` }}>
+                <div key={index} className="relative flex gap-8 mb-16 last:mb-0 group animate-fade-in" style={{ animationDelay: `${index * 150}ms` }}>
                   <div className="hidden md:flex flex-col items-center">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-xl shadow-lg z-10">
-                      {step.step}
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary blur-xl opacity-50 group-hover:opacity-100 transition-opacity" />
+                      <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-2xl shadow-2xl z-10 relative group-hover:scale-110 transition-transform">
+                        {step.step}
+                      </div>
                     </div>
                   </div>
-                  <Card className="flex-1 border-2 hover:border-primary/50 transition-all hover:shadow-lg">
-                    <CardHeader>
-                      <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                          <Icon name={step.icon} className="text-primary" size={24} />
+                  <InteractiveCard className="flex-1">
+                    <Card className="border-2 border-white/10 bg-white/5 backdrop-blur-xl hover:border-primary/50 transition-all">
+                      <CardHeader>
+                        <div className="flex items-start gap-6">
+                          <div className="relative">
+                            <div className="absolute inset-0 bg-primary/20 blur-lg rounded-xl" />
+                            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center shrink-0 relative border border-white/20">
+                              <Icon name={step.icon} className="text-primary" size={28} />
+                            </div>
+                          </div>
+                          <div>
+                            <CardTitle className="text-3xl mb-3 text-white">{step.title}</CardTitle>
+                            <CardDescription className="text-lg text-white/60 leading-relaxed">{step.description}</CardDescription>
+                          </div>
                         </div>
-                        <div>
-                          <CardTitle className="text-2xl mb-2">{step.title}</CardTitle>
-                          <CardDescription className="text-base">{step.description}</CardDescription>
-                        </div>
-                      </div>
-                    </CardHeader>
-                  </Card>
+                      </CardHeader>
+                    </Card>
+                  </InteractiveCard>
                 </div>
               ))}
             </div>
@@ -197,17 +256,20 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="use-cases" className="py-20 px-6 bg-white/50 backdrop-blur-sm relative z-10">
+      <section id="use-cases" className="py-32 px-6 relative z-10">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-accent/10 text-accent border-accent/20">Применение</Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Кейсы использования</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <div className="text-center mb-20">
+            <Badge className="mb-6 bg-accent/10 text-accent border-accent/30 backdrop-blur-xl">
+              <Icon name="Briefcase" className="inline mr-2" size={14} />
+              Применение
+            </Badge>
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">Кейсы использования</h2>
+            <p className="text-xl text-white/60 max-w-2xl mx-auto">
               SecureAI защищает данные в разных отраслях
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {[
               {
                 icon: 'Building2',
@@ -234,40 +296,44 @@ const Index = () => {
                 stats: 'SOC 2 Type II сертификация'
               }
             ].map((useCase, index) => (
-              <Card 
-                key={index} 
-                className="border-2 hover:border-secondary/50 transition-all hover:shadow-xl p-2 animate-scale-in"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <CardHeader>
-                  <div className="flex items-start gap-4">
-                    <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-secondary/20 to-secondary/5 flex items-center justify-center shrink-0">
-                      <Icon name={useCase.icon} className="text-secondary" size={32} />
+              <InteractiveCard key={index} glassEffect>
+                <Card className="border-2 border-white/10 bg-white/5 backdrop-blur-xl hover:border-secondary/50 transition-all p-2 group animate-scale-in" style={{ animationDelay: `${index * 100}ms` }}>
+                  <CardHeader>
+                    <div className="flex items-start gap-6">
+                      <div className="relative">
+                        <div className="absolute inset-0 bg-secondary/20 blur-xl rounded-2xl" />
+                        <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-secondary/20 to-secondary/5 flex items-center justify-center shrink-0 relative border border-white/20 group-hover:scale-110 transition-transform">
+                          <Icon name={useCase.icon} className="text-secondary" size={36} />
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <CardTitle className="text-3xl mb-3 text-white">{useCase.title}</CardTitle>
+                        <Badge variant="secondary" className="mb-4 bg-secondary/20 text-secondary border-secondary/30">{useCase.stats}</Badge>
+                        <CardDescription className="text-base text-white/60 leading-relaxed">{useCase.description}</CardDescription>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <CardTitle className="text-2xl mb-2">{useCase.title}</CardTitle>
-                      <Badge variant="secondary" className="mb-3">{useCase.stats}</Badge>
-                      <CardDescription className="text-base">{useCase.description}</CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-              </Card>
+                  </CardHeader>
+                </Card>
+              </InteractiveCard>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="pricing" className="py-20 px-6 bg-gradient-to-b from-white/50 to-purple-50/30 backdrop-blur-sm relative z-10">
+      <section id="pricing" className="py-32 px-6 relative z-10">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">Тарифы</Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Прозрачные цены</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <div className="text-center mb-20">
+            <Badge className="mb-6 bg-primary/10 text-primary border-primary/30 backdrop-blur-xl">
+              <Icon name="DollarSign" className="inline mr-2" size={14} />
+              Тарифы
+            </Badge>
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">Прозрачные цены</h2>
+            <p className="text-xl text-white/60 max-w-2xl mx-auto">
               Выберите подходящий план для вашего бизнеса
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {[
               {
                 name: 'Starter',
@@ -315,149 +381,167 @@ const Index = () => {
                 highlighted: false
               }
             ].map((plan, index) => (
-              <Card 
+              <InteractiveCard 
                 key={index} 
-                className={`relative overflow-hidden transition-all hover:shadow-2xl animate-scale-in ${
-                  plan.highlighted 
-                    ? 'border-4 border-primary scale-105 shadow-xl' 
-                    : 'border-2 hover:border-primary/30'
-                }`}
+                className={`relative overflow-hidden animate-scale-in ${plan.highlighted ? 'md:scale-110' : ''}`}
                 style={{ animationDelay: `${index * 100}ms` }}
+                glassEffect
               >
                 {plan.highlighted && (
-                  <div className="absolute top-0 right-0 bg-gradient-to-l from-primary to-secondary text-white px-6 py-2 text-sm font-semibold">
+                  <div className="absolute top-0 right-0 bg-gradient-to-l from-primary to-secondary text-white px-8 py-3 text-sm font-semibold z-10 rounded-bl-2xl">
+                    <Icon name="Star" className="inline mr-1" size={14} />
                     Популярный
                   </div>
                 )}
-                <CardHeader className="text-center pb-8 pt-8">
-                  <CardTitle className="text-2xl mb-2">{plan.name}</CardTitle>
-                  <CardDescription className="mb-4">{plan.description}</CardDescription>
-                  <div className="flex items-baseline justify-center gap-1">
-                    <span className="text-5xl font-bold">{plan.price}</span>
-                    <span className="text-muted-foreground">{plan.period}</span>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {plan.features.map((feature, i) => (
-                    <div key={i} className="flex items-start gap-3">
-                      <Icon name="Check" className="text-primary shrink-0 mt-0.5" size={20} />
-                      <span className="text-sm">{feature}</span>
+                <Card className={`border-2 bg-white/5 backdrop-blur-xl transition-all ${
+                  plan.highlighted 
+                    ? 'border-primary/50 shadow-2xl shadow-primary/20' 
+                    : 'border-white/10 hover:border-primary/30'
+                }`}>
+                  <CardHeader className="text-center pb-8 pt-10">
+                    <CardTitle className="text-3xl mb-3 text-white">{plan.name}</CardTitle>
+                    <CardDescription className="mb-6 text-white/60">{plan.description}</CardDescription>
+                    <div className="flex items-baseline justify-center gap-2">
+                      <span className="text-6xl font-bold text-white">{plan.price}</span>
+                      <span className="text-white/50 text-lg">{plan.period}</span>
                     </div>
-                  ))}
-                  <Button 
-                    className="w-full mt-6" 
-                    size="lg"
-                    variant={plan.highlighted ? 'default' : 'outline'}
-                  >
-                    {plan.highlighted ? 'Начать сейчас' : 'Выбрать план'}
-                  </Button>
-                </CardContent>
-              </Card>
+                  </CardHeader>
+                  <CardContent className="space-y-4 pb-8">
+                    {plan.features.map((feature, i) => (
+                      <div key={i} className="flex items-start gap-3">
+                        <Icon name="Check" className="text-primary shrink-0 mt-0.5" size={20} />
+                        <span className="text-sm text-white/80">{feature}</span>
+                      </div>
+                    ))}
+                    <Button 
+                      className={`w-full mt-8 h-14 text-base ${
+                        plan.highlighted 
+                          ? 'bg-gradient-to-r from-primary to-secondary hover:shadow-xl hover:shadow-primary/50 text-white border-0' 
+                          : 'bg-white/10 hover:bg-white/20 text-white border-2 border-white/20'
+                      } transition-all hover:scale-105`}
+                      size="lg"
+                    >
+                      {plan.highlighted ? 'Начать сейчас' : 'Выбрать план'}
+                      <Icon name="ArrowRight" className="ml-2" size={18} />
+                    </Button>
+                  </CardContent>
+                </Card>
+              </InteractiveCard>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="about" className="py-20 px-6 bg-white/50 backdrop-blur-sm relative z-10">
-        <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-12">
-            <Badge className="mb-4 bg-secondary/10 text-secondary border-secondary/20">О компании</Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Миссия SecureAI</h2>
+      <section id="about" className="py-32 px-6 relative z-10">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center mb-16">
+            <Badge className="mb-6 bg-secondary/10 text-secondary border-secondary/30 backdrop-blur-xl">
+              <Icon name="Info" className="inline mr-2" size={14} />
+              О компании
+            </Badge>
+            <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">Миссия SecureAI</h2>
           </div>
           
-          <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
-            <p>
-              SecureAI основана командой экспертов в области кибербезопасности и искусственного интеллекта 
-              с опытом работы в ведущих технологических компаниях.
-            </p>
-            <p>
-              Мы верим, что AI должен быть доступен каждой компании, но не за счет безопасности. 
-              Наша миссия — сделать использование AI-технологий безопасным и соответствующим всем 
-              требованиям регуляторов.
-            </p>
-            <div className="grid md:grid-cols-3 gap-8 pt-8">
-              {[
-                { number: '500+', label: 'Компаний доверяют нам' },
-                { number: '10M+', label: 'Защищенных запросов' },
-                { number: '99.9%', label: 'Uptime SLA' }
-              ].map((stat, index) => (
-                <div key={index} className="text-center p-6 rounded-xl bg-gradient-to-br from-primary/5 to-secondary/5">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-sm font-medium">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <InteractiveCard glassEffect>
+            <Card className="border-2 border-white/10 bg-white/5 backdrop-blur-xl p-8">
+              <CardContent className="space-y-8 text-lg text-white/70 leading-relaxed">
+                <p>
+                  SecureAI основана командой экспертов в области кибербезопасности и искусственного интеллекта 
+                  с опытом работы в ведущих технологических компаниях.
+                </p>
+                <p>
+                  Мы верим, что AI должен быть доступен каждой компании, но не за счет безопасности. 
+                  Наша миссия — сделать использование AI-технологий безопасным и соответствующим всем 
+                  требованиям регуляторов.
+                </p>
+              </CardContent>
+            </Card>
+          </InteractiveCard>
         </div>
       </section>
 
-      <section id="contact" className="py-20 px-6 bg-gradient-to-b from-purple-50/50 to-white/50 backdrop-blur-sm relative z-10">
-        <div className="container mx-auto max-w-2xl">
-          <div className="text-center mb-12">
-            <Badge className="mb-4 bg-accent/10 text-accent border-accent/20">Контакты</Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Свяжитесь с нами</h2>
-            <p className="text-xl text-muted-foreground">
+      <section id="contact" className="py-32 px-6 relative z-10">
+        <div className="container mx-auto max-w-3xl">
+          <div className="text-center mb-16">
+            <Badge className="mb-6 bg-accent/10 text-accent border-accent/30 backdrop-blur-xl">
+              <Icon name="Mail" className="inline mr-2" size={14} />
+              Контакты
+            </Badge>
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">Свяжитесь с нами</h2>
+            <p className="text-xl text-white/60">
               Готовы начать? Наша команда поможет внедрить SecureAI
             </p>
           </div>
 
-          <Card className="border-2">
-            <CardContent className="pt-6 space-y-6">
-              <div className="flex items-start gap-4 p-4 rounded-lg bg-muted/50">
-                <Icon name="Mail" className="text-primary shrink-0 mt-1" size={24} />
-                <div>
-                  <div className="font-semibold mb-1">Email</div>
-                  <a href="mailto:info@secureai.ru" className="text-primary hover:underline">
-                    info@secureai.ru
-                  </a>
+          <InteractiveCard glassEffect>
+            <Card className="border-2 border-white/10 bg-white/5 backdrop-blur-xl">
+              <CardContent className="pt-8 space-y-6">
+                <div className="flex items-start gap-6 p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition-all group cursor-pointer">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full group-hover:bg-primary/30 transition-all" />
+                    <Icon name="Mail" className="text-primary shrink-0 mt-1 relative z-10 group-hover:scale-110 transition-transform" size={28} />
+                  </div>
+                  <div>
+                    <div className="font-semibold mb-2 text-white text-lg">Email</div>
+                    <a href="mailto:info@secureai.ru" className="text-primary hover:text-secondary transition-colors text-lg">
+                      info@secureai.ru
+                    </a>
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex items-start gap-4 p-4 rounded-lg bg-muted/50">
-                <Icon name="Phone" className="text-secondary shrink-0 mt-1" size={24} />
-                <div>
-                  <div className="font-semibold mb-1">Телефон</div>
-                  <a href="tel:+74951234567" className="text-secondary hover:underline">
-                    +7 (495) 123-45-67
-                  </a>
+                <div className="flex items-start gap-6 p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition-all group cursor-pointer">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-secondary/20 blur-xl rounded-full group-hover:bg-secondary/30 transition-all" />
+                    <Icon name="Phone" className="text-secondary shrink-0 mt-1 relative z-10 group-hover:scale-110 transition-transform" size={28} />
+                  </div>
+                  <div>
+                    <div className="font-semibold mb-2 text-white text-lg">Телефон</div>
+                    <a href="tel:+74951234567" className="text-secondary hover:text-primary transition-colors text-lg">
+                      +7 (495) 123-45-67
+                    </a>
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex items-start gap-4 p-4 rounded-lg bg-muted/50">
-                <Icon name="MapPin" className="text-accent shrink-0 mt-1" size={24} />
-                <div>
-                  <div className="font-semibold mb-1">Офис</div>
-                  <p className="text-muted-foreground">
-                    Москва, Пресненская наб., 12<br />
-                    Москва-Сити, Башня Федерация
-                  </p>
+                <div className="flex items-start gap-6 p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition-all group cursor-pointer">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-accent/20 blur-xl rounded-full group-hover:bg-accent/30 transition-all" />
+                    <Icon name="MapPin" className="text-accent shrink-0 mt-1 relative z-10 group-hover:scale-110 transition-transform" size={28} />
+                  </div>
+                  <div>
+                    <div className="font-semibold mb-2 text-white text-lg">Офис</div>
+                    <p className="text-white/60 text-lg">
+                      Москва, Пресненская наб., 12<br />
+                      Москва-Сити, Башня Федерация
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-              <Button size="lg" className="w-full mt-4">
-                Запросить демо
-                <Icon name="ArrowRight" className="ml-2" size={20} />
-              </Button>
-            </CardContent>
-          </Card>
+                <Button size="lg" className="w-full mt-8 h-16 text-lg bg-gradient-to-r from-primary to-secondary hover:shadow-2xl hover:shadow-primary/50 transition-all group text-white border-0 hover:scale-105">
+                  Запросить демо
+                  <Icon name="ArrowRight" className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+                </Button>
+              </CardContent>
+            </Card>
+          </InteractiveCard>
         </div>
       </section>
 
-      <footer className="bg-gradient-to-b from-foreground to-foreground/95 text-white py-12 px-6">
+      <footer className="bg-slate-950/80 backdrop-blur-xl border-t border-white/10 text-white py-16 px-6 relative z-10">
         <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-2">
-              <Icon name="Shield" size={28} />
-              <span className="text-xl font-bold">SecureAI</span>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full" />
+                <Icon name="Shield" size={32} className="text-primary relative z-10" />
+              </div>
+              <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">SecureAI</span>
             </div>
-            <div className="flex gap-6 text-sm">
+            <div className="flex gap-8 text-sm">
               <a href="#" className="hover:text-primary transition-colors">Политика конфиденциальности</a>
               <a href="#" className="hover:text-primary transition-colors">Условия использования</a>
               <a href="#" className="hover:text-primary transition-colors">Документация</a>
             </div>
-            <div className="text-sm text-white/70">
+            <div className="text-sm text-white/50">
               © 2024 SecureAI. Все права защищены.
             </div>
           </div>
