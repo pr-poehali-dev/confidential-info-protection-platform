@@ -83,7 +83,7 @@ const Index = () => {
                 Попробовать бесплатно
                 <Icon name="ArrowRight" className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
               </Button>
-              <Button size="lg" variant="outline" className="text-lg px-10 h-16 border-2 border-primary/30 text-white hover:bg-primary/10 hover:border-primary transition-all backdrop-blur-xl hover:scale-105">
+              <Button size="lg" variant="outline" className="text-lg px-10 h-16 border-2 border-primary/30 bg-transparent text-white hover:bg-primary/10 hover:border-primary transition-all backdrop-blur-xl hover:scale-105">
                 <Icon name="Play" className="mr-2" size={20} />
                 Смотреть демо
               </Button>
@@ -400,9 +400,9 @@ const Index = () => {
                   <CardHeader className="text-center pb-8 pt-10">
                     <CardTitle className="text-3xl mb-3 text-white">{plan.name}</CardTitle>
                     <CardDescription className="mb-6 text-white/60">{plan.description}</CardDescription>
-                    <div className="flex items-baseline justify-center gap-2">
-                      <span className="text-6xl font-bold text-white">{plan.price}</span>
-                      <span className="text-white/50 text-lg">{plan.period}</span>
+                    <div className="flex flex-col sm:flex-row items-baseline justify-center gap-2">
+                      <span className="text-4xl sm:text-5xl md:text-6xl font-bold text-white">{plan.price}</span>
+                      <span className="text-white/50 text-base sm:text-lg">{plan.period}</span>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-4 pb-8">
