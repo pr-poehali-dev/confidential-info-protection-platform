@@ -3,12 +3,16 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
+import AnimatedBackground from '@/components/AnimatedBackground';
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState('encryption');
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-purple-50/30 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-white via-purple-50/30 to-white relative overflow-hidden">
+      <AnimatedBackground />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] pointer-events-none" />
       <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-lg border-b border-purple-100 z-50">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
@@ -31,7 +35,7 @@ const Index = () => {
         </div>
       </nav>
 
-      <section className="pt-32 pb-20 px-6">
+      <section className="pt-32 pb-20 px-6 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center animate-fade-in">
             <Badge className="mb-6 bg-primary/10 text-primary border-primary/20">
@@ -58,7 +62,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="features" className="py-20 px-6 bg-white">
+      <section id="features" className="py-20 px-6 bg-white/50 backdrop-blur-sm relative z-10">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-secondary/10 text-secondary border-secondary/20">Возможности</Badge>
@@ -127,7 +131,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="how-it-works" className="py-20 px-6 bg-gradient-to-b from-purple-50/50 to-white">
+      <section id="how-it-works" className="py-20 px-6 bg-gradient-to-b from-purple-50/50 to-white/50 backdrop-blur-sm relative z-10">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">Процесс</Badge>
@@ -193,7 +197,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="use-cases" className="py-20 px-6 bg-white">
+      <section id="use-cases" className="py-20 px-6 bg-white/50 backdrop-blur-sm relative z-10">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-accent/10 text-accent border-accent/20">Применение</Badge>
@@ -253,7 +257,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="pricing" className="py-20 px-6 bg-gradient-to-b from-white to-purple-50/30">
+      <section id="pricing" className="py-20 px-6 bg-gradient-to-b from-white/50 to-purple-50/30 backdrop-blur-sm relative z-10">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">Тарифы</Badge>
@@ -354,7 +358,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="about" className="py-20 px-6 bg-white">
+      <section id="about" className="py-20 px-6 bg-white/50 backdrop-blur-sm relative z-10">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-12">
             <Badge className="mb-4 bg-secondary/10 text-secondary border-secondary/20">О компании</Badge>
@@ -389,7 +393,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="contact" className="py-20 px-6 bg-gradient-to-b from-purple-50/50 to-white">
+      <section id="contact" className="py-20 px-6 bg-gradient-to-b from-purple-50/50 to-white/50 backdrop-blur-sm relative z-10">
         <div className="container mx-auto max-w-2xl">
           <div className="text-center mb-12">
             <Badge className="mb-4 bg-accent/10 text-accent border-accent/20">Контакты</Badge>

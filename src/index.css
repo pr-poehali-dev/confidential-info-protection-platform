@@ -121,3 +121,12 @@
       sans-serif;
   }
 }
+
+@layer utilities {
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(to right, rgb(139 92 246 / 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(139 92 246 / 0.1) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+}
