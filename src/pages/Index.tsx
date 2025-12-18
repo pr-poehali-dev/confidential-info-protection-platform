@@ -401,8 +401,8 @@ const Index = () => {
                     <CardTitle className="text-3xl mb-3 text-white">{plan.name}</CardTitle>
                     <CardDescription className="mb-6 text-white/60">{plan.description}</CardDescription>
                     <div className="flex flex-col sm:flex-row items-baseline justify-center gap-2">
-                      <span className="text-4xl sm:text-5xl md:text-6xl font-bold text-white">{plan.price}</span>
-                      <span className="text-white/50 text-base sm:text-lg">{plan.period}</span>
+                      <span className="text-3xl sm:text-4xl font-bold text-white">{plan.price}</span>
+                      <span className="text-white/50 text-sm sm:text-base">{plan.period}</span>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-4 pb-8">
