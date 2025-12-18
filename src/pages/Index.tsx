@@ -71,10 +71,10 @@ const Index = () => {
               <Icon name="Lock" className="inline mr-2" size={16} />
               Новое поколение защиты данных
             </Badge>
-            <h1 className="text-6xl md:text-8xl font-bold mb-8 bg-gradient-to-r from-white via-primary to-secondary bg-clip-text text-transparent leading-tight animate-gradient-x">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 bg-gradient-to-r from-white via-primary to-secondary bg-clip-text text-transparent leading-tight animate-gradient-x break-words">
               Защита конфиденциальности при работе с ИИ
             </h1>
-            <p className="text-xl md:text-2xl text-white/60 mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl text-white/60 mb-12 max-w-3xl mx-auto leading-relaxed px-4">
               Безопасно используйте AI-модели без риска утечки корпоративных данных. 
               Шифрование военного уровня, анализ рисков и полный контроль.
             </p>
@@ -113,7 +113,7 @@ const Index = () => {
               <Icon name="Zap" className="inline mr-2" size={14} />
               Возможности
             </Badge>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">Комплексная защита данных</h2>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white px-4">Комплексная защита данных</h2>
             <p className="text-xl text-white/60 max-w-2xl mx-auto">
               Многоуровневая система безопасности для работы с AI-моделями
             </p>
@@ -186,7 +186,7 @@ const Index = () => {
               <Icon name="Workflow" className="inline mr-2" size={14} />
               Процесс
             </Badge>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">Как это работает</h2>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white px-4">Как это работает</h2>
             <p className="text-xl text-white/60 max-w-2xl mx-auto">
               Простая интеграция и автоматическая защита в 4 шага
             </p>
@@ -263,7 +263,7 @@ const Index = () => {
               <Icon name="Briefcase" className="inline mr-2" size={14} />
               Применение
             </Badge>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">Кейсы использования</h2>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white px-4">Кейсы использования</h2>
             <p className="text-xl text-white/60 max-w-2xl mx-auto">
               SecureAI защищает данные в разных отраслях
             </p>
@@ -327,7 +327,7 @@ const Index = () => {
               <Icon name="DollarSign" className="inline mr-2" size={14} />
               Тарифы
             </Badge>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">Прозрачные цены</h2>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white px-4">Прозрачные цены</h2>
             <p className="text-xl text-white/60 max-w-2xl mx-auto">
               Выберите подходящий план для вашего бизнеса
             </p>
@@ -438,7 +438,7 @@ const Index = () => {
               <Icon name="Info" className="inline mr-2" size={14} />
               О компании
             </Badge>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">Миссия SecureAI</h2>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-white px-4">Миссия SecureAI</h2>
           </div>
           
           <InteractiveCard>
@@ -466,7 +466,7 @@ const Index = () => {
               <Icon name="Mail" className="inline mr-2" size={14} />
               Контакты
             </Badge>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">Свяжитесь с нами</h2>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white px-4">Свяжитесь с нами</h2>
             <p className="text-xl text-white/60">
               Готовы начать? Наша команда поможет внедрить SecureAI
             </p>
