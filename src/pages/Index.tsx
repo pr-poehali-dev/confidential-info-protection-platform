@@ -158,12 +158,12 @@ const Index = () => {
                 color: 'text-accent'
               }
             ].map((feature, index) => (
-              <InteractiveCard key={index} glassEffect>
-                <Card className="border-2 border-white/10 bg-white/5 backdrop-blur-xl hover:border-primary/50 transition-all group animate-slide-up" style={{ animationDelay: `${index * 100}ms` }}>
+              <InteractiveCard key={index}>
+                <Card className="border-2 border-primary/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl hover:border-primary/50 transition-all group animate-slide-up shadow-xl" style={{ animationDelay: `${index * 100}ms` }}>
                   <CardHeader>
                     <div className="relative mb-6">
                       <div className={`absolute inset-0 bg-gradient-to-br ${feature.color.replace('text-', 'from-')}/20 blur-xl rounded-xl`} />
-                      <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center relative backdrop-blur-xl border border-white/20 group-hover:scale-110 transition-transform">
+                      <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative backdrop-blur-xl border border-primary/30 group-hover:scale-110 transition-transform shadow-lg">
                         <Icon name={feature.icon} className={feature.color} size={32} />
                       </div>
                     </div>
@@ -232,12 +232,12 @@ const Index = () => {
                     </div>
                   </div>
                   <InteractiveCard className="flex-1">
-                    <Card className="border-2 border-white/10 bg-white/5 backdrop-blur-xl hover:border-primary/50 transition-all">
+                    <Card className="border-2 border-primary/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl hover:border-primary/50 transition-all shadow-xl">
                       <CardHeader>
                         <div className="flex items-start gap-6">
                           <div className="relative">
                             <div className="absolute inset-0 bg-primary/20 blur-lg rounded-xl" />
-                            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center shrink-0 relative border border-white/20">
+                            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center shrink-0 relative border border-primary/30 shadow-lg">
                               <Icon name={step.icon} className="text-primary" size={28} />
                             </div>
                           </div>
@@ -296,13 +296,13 @@ const Index = () => {
                 stats: 'SOC 2 Type II сертификация'
               }
             ].map((useCase, index) => (
-              <InteractiveCard key={index} glassEffect>
-                <Card className="border-2 border-white/10 bg-white/5 backdrop-blur-xl hover:border-secondary/50 transition-all p-2 group animate-scale-in" style={{ animationDelay: `${index * 100}ms` }}>
+              <InteractiveCard key={index}>
+                <Card className="border-2 border-secondary/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl hover:border-secondary/50 transition-all p-2 group animate-scale-in shadow-xl" style={{ animationDelay: `${index * 100}ms` }}>
                   <CardHeader>
                     <div className="flex items-start gap-6">
                       <div className="relative">
                         <div className="absolute inset-0 bg-secondary/20 blur-xl rounded-2xl" />
-                        <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-secondary/20 to-secondary/5 flex items-center justify-center shrink-0 relative border border-white/20 group-hover:scale-110 transition-transform">
+                        <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center shrink-0 relative border border-secondary/30 group-hover:scale-110 transition-transform shadow-lg">
                           <Icon name={useCase.icon} className="text-secondary" size={36} />
                         </div>
                       </div>
@@ -385,7 +385,6 @@ const Index = () => {
                 key={index} 
                 className={`relative overflow-hidden animate-scale-in ${plan.highlighted ? 'md:scale-110' : ''}`}
                 style={{ animationDelay: `${index * 100}ms` }}
-                glassEffect
               >
                 {plan.highlighted && (
                   <div className="absolute top-0 right-0 bg-gradient-to-l from-primary to-secondary text-white px-8 py-3 text-sm font-semibold z-10 rounded-bl-2xl">
@@ -393,10 +392,10 @@ const Index = () => {
                     Популярный
                   </div>
                 )}
-                <Card className={`border-2 bg-white/5 backdrop-blur-xl transition-all ${
+                <Card className={`border-2 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl transition-all shadow-xl ${
                   plan.highlighted 
-                    ? 'border-primary/50 shadow-2xl shadow-primary/20' 
-                    : 'border-white/10 hover:border-primary/30'
+                    ? 'border-primary/50 shadow-2xl shadow-primary/30' 
+                    : 'border-primary/20 hover:border-primary/40'
                 }`}>
                   <CardHeader className="text-center pb-8 pt-10">
                     <CardTitle className="text-3xl mb-3 text-white">{plan.name}</CardTitle>
@@ -442,8 +441,8 @@ const Index = () => {
             <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">Миссия SecureAI</h2>
           </div>
           
-          <InteractiveCard glassEffect>
-            <Card className="border-2 border-white/10 bg-white/5 backdrop-blur-xl p-8">
+          <InteractiveCard>
+            <Card className="border-2 border-primary/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl p-8 shadow-xl">
               <CardContent className="space-y-8 text-lg text-white/70 leading-relaxed">
                 <p>
                   SecureAI основана командой экспертов в области кибербезопасности и искусственного интеллекта 
@@ -473,10 +472,10 @@ const Index = () => {
             </p>
           </div>
 
-          <InteractiveCard glassEffect>
-            <Card className="border-2 border-white/10 bg-white/5 backdrop-blur-xl">
+          <InteractiveCard>
+            <Card className="border-2 border-primary/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl shadow-xl">
               <CardContent className="pt-8 space-y-6">
-                <div className="flex items-start gap-6 p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition-all group cursor-pointer">
+                <div className="flex items-start gap-6 p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800/70 transition-all group cursor-pointer border border-primary/10">
                   <div className="relative">
                     <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full group-hover:bg-primary/30 transition-all" />
                     <Icon name="Mail" className="text-primary shrink-0 mt-1 relative z-10 group-hover:scale-110 transition-transform" size={28} />
@@ -489,7 +488,7 @@ const Index = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-6 p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition-all group cursor-pointer">
+                <div className="flex items-start gap-6 p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800/70 transition-all group cursor-pointer border border-secondary/10">
                   <div className="relative">
                     <div className="absolute inset-0 bg-secondary/20 blur-xl rounded-full group-hover:bg-secondary/30 transition-all" />
                     <Icon name="Phone" className="text-secondary shrink-0 mt-1 relative z-10 group-hover:scale-110 transition-transform" size={28} />
@@ -502,7 +501,7 @@ const Index = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-6 p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition-all group cursor-pointer">
+                <div className="flex items-start gap-6 p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800/70 transition-all group cursor-pointer border border-accent/10">
                   <div className="relative">
                     <div className="absolute inset-0 bg-accent/20 blur-xl rounded-full group-hover:bg-accent/30 transition-all" />
                     <Icon name="MapPin" className="text-accent shrink-0 mt-1 relative z-10 group-hover:scale-110 transition-transform" size={28} />
